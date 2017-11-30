@@ -15,6 +15,14 @@ body {
 	height: 100%;
 }
 
+a {
+	color: #FFF;
+}
+
+.no-underline {
+	text-decoration: none;
+}
+
 p {
 	color: #FFF;
 }
