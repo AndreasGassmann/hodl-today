@@ -17,7 +17,8 @@ const router = new MoonRouter({
     "/": "Home",
     "/eth": "eth",
     "/faq": "faq"
-  }
+  },
+  mode: "history"
 });
 
 const app = new Moon({
