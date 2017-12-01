@@ -8,7 +8,8 @@
     "bundle-css": "node ./build/bundle-css.js",
     "watch-css": "node ./build/watch.js",
     "dev": "cross-env NODE_ENV=development npm-run-all --parallel watch serve watch-css bundle-css",
-    "build": "cross-env NODE_ENV=production node build/build.js"
+    "build": "cross-env NODE_ENV=production node build/build.js",
+    "deploy": "git subtree push --prefix static origin gh-pages"
   },
   "dependencies": {
     "monx": "0.1.1",
