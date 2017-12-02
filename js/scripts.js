@@ -27,6 +27,7 @@ const app = new Moon({
   hooks: {
     mounted() {
       store.dispatch("FETCH_PRICES");
+      store.dispatch("FETCH_HISTORY");
       setInterval(function () {
         store.dispatch("FETCH_PRICES");
       }, 10000);
