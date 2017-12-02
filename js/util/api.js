@@ -15,19 +15,11 @@ let fetchPrices = () => {
         BTC.discount = Math.round((1 - (data.BTC_CURRENT / data.BTC_ATH)) * 10000) / 100;
         BTC.showDiscount = data.BTC_ATH > data.BTC_CURRENT;
 
-        console.log('currentPrice BTC', BTC.currentPrice);
-        console.log('showing BTC discount ', BTC.discount);
-        console.log('discount BTC', BTC.showDiscount);
-
         // ETH
         let ETH = {};
         ETH.currentPrice = data.ETH_CURRENT;
         ETH.discount = Math.round((1 - (data.ETH_CURRENT / data.ETH_ATH)) * 10000) / 100;
         ETH.showDiscount = data.ETH_ATH > data.ETH_CURRENT;
-
-        console.log('currentPrice ETH', ETH.currentPrice);
-        console.log('showing ETH discount ', ETH.discount);
-        console.log('discount ETH', ETH.showDiscount);
 
         resolve({
           BTC,
