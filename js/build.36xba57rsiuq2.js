@@ -10,13 +10,16 @@ var options={};options=function(t){return{store:require("../store/store.js").sto
 },{"../store/store.js":5}],4:[function(require,module,exports){
 var Moon=require("moonjs"),MoonRouter=require("moon-router"),api=require("./util/api");require("./store/store.js").init(Moon);var store=require("./store/store.js").store;require("./components/home.moon")(Moon),require("./components/faq.moon")(Moon),require("./components/eth.moon")(Moon),Moon.use(MoonRouter);var router=new MoonRouter({default:"/",map:{"/":"home","/eth":"eth","/faq":"faq"}}),app=new Moon({el:"#app",router:router,hooks:{mounted:function(){store.dispatch("FETCH_PRICES"),setInterval(function(){store.dispatch("FETCH_PRICES")},1e4)}}});
 
-},{"./components/eth.moon":1,"./components/faq.moon":2,"./components/home.moon":3,"./store/store.js":5,"./util/api":6,"moon-router":8,"moonjs":9}],5:[function(require,module,exports){
-var Monx=require("monx"),api=require("../util/api.js");module.exports.store={},module.exports.init=function(e){e.use(Monx),module.exports.store=new Monx({state:{BTC:{currentPrice:0,showDiscount:!1,discount:0},ETH:{currentPrice:0,showDiscount:!1,discount:0}},actions:{FETCH_PRICES:function(e,o){console.log("fetch_prices"),api.fetchPrices().then(function(o){e.BTC=o.BTC,e.ETH=o.ETH}).catch(function(e){return console.log("error fetching prices",e)})}}})};
+},{"./components/eth.moon":1,"./components/faq.moon":2,"./components/home.moon":3,"./store/store.js":5,"./util/api":6,"moon-router":9,"moonjs":10}],5:[function(require,module,exports){
+var Monx=require("monx"),api=require("../util/api.js");module.exports.store={},module.exports.init=function(e){e.use(Monx),module.exports.store=new Monx({state:{BTC:{currentPrice:0,showDiscount:!1,discount:0},ETH:{currentPrice:0,showDiscount:!1,discount:0}},actions:{FETCH_PRICES:function(e,o){api.fetchPrices().then(function(o){e.BTC=o.BTC,e.ETH=o.ETH}).catch(function(e){return console.log("error fetching prices",e)})}}})};
 
-},{"../util/api.js":6,"monx":7}],6:[function(require,module,exports){
-var fetchPrices=function(){return new Promise(function(t,o){fetch("https://api.hodlfolio.com/ath/bitstamp/").then(function(e){if(200!==e.status)return console.log("Looks like there was a problem. Status Code: "+e.status),o();e.json().then(function(o){var e={};e.currentPrice=o.BTC_CURRENT,e.discount=Math.round(1e4*(1-o.BTC_CURRENT/o.BTC_ATH))/100,e.showDiscount=o.BTC_ATH>o.BTC_CURRENT;var c={};c.currentPrice=o.ETH_CURRENT,c.discount=Math.round(1e4*(1-o.ETH_CURRENT/o.ETH_ATH))/100,c.showDiscount=o.ETH_ATH>o.ETH_CURRENT,t({BTC:e,ETH:c})})}).catch(function(t){console.log("Fetch Error :-S",t),o(t)})})};module.exports={fetchPrices:fetchPrices};
+},{"../util/api.js":6,"monx":8}],6:[function(require,module,exports){
+var fetchPrices=function(){return new Promise(function(t,o){fetch("https://api.hodlfolio.com/ath/bitstamp/").then(function(e){if(200!==e.status)return console.log("Looks like there was a problem. Status Code: "+e.status),o();e.json().then(function(o){var e={};e.currentPrice=o.BTC_CURRENT,e.discount=Math.round(1e4*(1-o.BTC_CURRENT/o.BTC_ATH))/100,e.showDiscount=o.BTC_ATH>o.BTC_CURRENT;var r={};r.currentPrice=o.ETH_CURRENT,r.discount=Math.round(1e4*(1-o.ETH_CURRENT/o.ETH_ATH))/100,r.showDiscount=o.ETH_ATH>o.ETH_CURRENT,t({BTC:e,ETH:r})})}).catch(function(t){console.log("Fetch Error :-S",t),o(t)})})};require("./lambo"),module.exports={fetchPrices:fetchPrices};
 
-},{}],7:[function(require,module,exports){
+},{"./lambo":7}],7:[function(require,module,exports){
+console.log("%c \n  __ __     __       ______           ____     _____      \n _\\ \\\\ \\__ /\\ \\     /\\  _  \\  /'\\_/`\\/\\  _`\\  /\\  __`\\    \n/\\__  _  _\\\\ \\ \\    \\ \\ \\L\\ \\/\\      \\ \\ \\L\\ \\\\ \\ \\/\\ \\   \n\\/_L\\ \\\\ \\L_\\ \\ \\  __\\ \\  __ \\ \\ \\__\\ \\ \\  _ <'\\ \\ \\ \\ \\  \n  /\\_   _  _\\\\ \\ \\L\\ \\\\ \\ \\/\\ \\ \\ \\_/\\ \\ \\ \\L\\ \\\\ \\ \\_\\ \\ \n  \\/_/\\_\\\\_\\/ \\ \\____/ \\ \\_\\ \\_\\ \\_\\\\ \\_\\ \\____/ \\ \\_____\\\n     \\/_//_/   \\/___/   \\/_/\\/_/\\/_/ \\/_/\\/___/   \\/_____/","font-family:monospace");
+
+},{}],8:[function(require,module,exports){
 /**
  * Monx v0.1.1
  * Copyright 2017 Kabir Shah
@@ -24,7 +27,7 @@ var fetchPrices=function(){return new Promise(function(t,o){fetch("https://api.h
  * https://github.com/KingPixil/monx
  */
 !function(t,n){"object"==typeof module&&module.exports?module.exports=n():t.Monx=n()}(this,function(){function t(t){this.state={},o(this,"_state",t.state,{}),o(this,"actions",t.actions,{}),this.instances=[],this.map={},e(this)}var n=null,i=null,s={},e=function(t){var n=null,s=t.instances,e=t.map,o=t.state,r=t._state;for(var a in r)!function(t){Object.defineProperty(o,t,{get:function(){return null!==i&&(void 0===e[i]&&(e[i]={}),e[i][t]=!0),r[t]},set:function(i){r[t]=i;for(var o=0;o<s.length;o++)!0===e[(n=s[o]).$name][t]&&n.build()}})}(a)},o=function(t,n,i,s){t[n]=void 0===i?s:i};return t.prototype.dispatch=function(t,n){this.actions[t](this.state,n)},t.prototype.install=function(t){var i=this;t.destroy=function(){var t=i.instances;t.splice(t.indexOf(this),1),n.apply(this,arguments)},this.instances.push(t)},t.init=function(t){var e=t.prototype.render;n=t.prototype.destroy,t.prototype.render=function(){var t=null,n=null,o=null;return void 0!==(o=this.$options.store)?(this.$data.store=o,o.install(this),!0!==s[t=this.$name]?(s[t]=!0,i=t,n=e.apply(this,arguments),i=null):n=e.apply(this,arguments)):n=e.apply(this,arguments),this.render=e,n}},t});
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 /**
  * Moon Router v0.1.3
  * Copyright 2016-2017 Kabir Shah
@@ -32,7 +35,7 @@ var fetchPrices=function(){return new Promise(function(t,o){fetch("https://api.h
  * https://github.com/KingPixil/moon-router
  */
 !function(t,n){"object"==typeof module&&module.exports?module.exports=n():t.MoonRouter=n()}(this,function(){function t(i){this.instance=null,this.default=i.default||"/",this.map=o(i.map)||{};var e=window.location.hash.slice(1);this.current={path:e||"/",component:null},e!==this.current.path&&(window.location.hash=this.current.path),this.route={},this.activeClass=i.activeClass||"router-link-active";var r=this;t.Moon.component("router-view",{functional:!0,render:function(t){return t(r.current.component,{attrs:{route:r.route}},{shouldRender:!0},[])}}),t.Moon.component("router-link",{functional:!0,render:function(t,n){var o=n.data,i=o.to;return o.href="#"+i,delete o.to,i===r.current.path&&(void 0===o.class?o.class=r.activeClass:o.class+=" "+r.activeClass),t("a",{attrs:o},{shouldRender:!0},n.slots.default)}}),window.onhashchange=function(){n(r,window.location.hash.slice(1)||window.location.pathname)},n(this,this.current.path)}var n=function(t,o){for(var i=o.slice(1).split("/"),e=t.map,r={query:{},params:{}},a=0;a<i.length;a++){var s=i[a];if(s.indexOf("?")!==-1){var u=s.split("?");s=u.shift();for(var l=0;l<u.length;l++){var c=u[l].split("=");r.query[c[0]]=c[1]}}if(void 0===e[s]&&(e["*"]?s="*":e[":"]&&(r.params[e[":"].name]=s,s=":")),e=e[s],void 0===e)return n(t,t.default),!1}return void 0===e["@"]?(n(t,t.default),!1):(t.current={path:o,component:e["@"]},t.route=r,null!==t.instance&&t.instance.build(),!0)},o=function(t){var n={};for(var o in t){for(var i=n,e=o.slice(1).split("/"),r=0;r<e.length;r++){var a=e[r];if(":"===a[0]){var s={name:a.slice(1)};i[":"]=s,a=":"}void 0===i[a]&&(i[a]={}),i=i[a]}i["@"]=t[o]}return n};return t.prototype.install=function(t){this.instance=t},t.init=function(n){t.Moon=n;var o=n.prototype.init;n.prototype.init=function(){void 0!==this.$options.router&&(this.$router=this.$options.router,this.$router.install(this)),o.apply(this,arguments)}},t});
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 /**
  * Moon v0.11.0
  * Copyright 2016-2017 Kabir Shah
