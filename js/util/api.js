@@ -1,6 +1,6 @@
 let fetchPrices = () => {
   return new Promise((resolve, reject) => {
-    fetch('http://api.hodlfolio.com/ath/bitstamp/').then(function (response) {
+    fetch('https://api.hodlfolio.com/ath/bitstamp/').then(function (response) {
       if (response.status !== 200) {
         console.log('Looks like there was a problem. Status Code: ' +
           response.status);
