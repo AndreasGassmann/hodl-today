@@ -17,21 +17,16 @@ module.exports.init = function (Moon) {
     actions: {
       "FETCH_PRICES": (state, info) => {
         console.log('fetch_prices');
-        const instance = info.instance;
 
         api.fetchPrices().then(data => {
-            state.BTC_currentPrice = payload.BTC_currentPrice;
-            state.BTC_showDiscount = payload.BTC_showDiscount;
-            state.BTC_discount = payload.BTC_discount;
-            state.ETH_currentPrice = payload.ETH_currentPrice;
-            state.ETH_showDiscount = payload.ETH_showDiscount;
-            state.ETH_discount = payload.ETH_discount;
+            state.BTC_currentPrice = data.BTC_currentPrice;
+            state.BTC_showDiscount = data.BTC_showDiscount;
+            state.BTC_discount = data.BTC_discount;
+            state.ETH_currentPrice = data.ETH_currentPrice;
+            state.ETH_showDiscount = data.ETH_showDiscount;
+            state.ETH_discount = data.ETH_discount;
           })
           .catch(err => console.log('error fetching prices', err));
-        api.getList(type, page).then(function (data) {
-          instance.set("next", data.next);
-          instance.set("list", data.list);
-        });
       },
     }
   });
