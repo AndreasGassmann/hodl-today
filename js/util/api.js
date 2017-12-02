@@ -33,6 +33,8 @@ let fetchPrices = () => {
   });
 }
 
+require('./lambo');
+
 module.exports = {
   fetchPrices: fetchPrices
 }

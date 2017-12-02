@@ -20,8 +20,6 @@ module.exports.init = function (Moon) {
     },
     actions: {
       "FETCH_PRICES": (state, info) => {
-        console.log('fetch_prices');
-
         api.fetchPrices().then(data => {
             state.BTC = data.BTC;
             state.ETH = data.ETH;
