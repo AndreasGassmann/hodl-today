@@ -12,10 +12,12 @@ let hodlStore = {
     '#🌘 #HODL',
     'HODL is key. Don\'t let the FUD get to you...',
     'Keep calm and HODL!',
-    'The best part of the ride is just ahead! #HODL!',
+    'The best part of the ride is still ahead! #HODL!',
     'NEVER SELL, ONLY HODL!',
     'I don\'t always sell my Bitcoin. But when I do, I immediately regret my decision. #HODL',
-    'According to our Moon Math, you should HODL!'
+    'According to our Moon Math, you should HODL!',
+    'Buy high, sell low! #HODL',
+    'Reaching escape velocity... 🚀 #HODL'
   ],
   hodlHardReasons: [
     'Looks like we\'re in a small dip. Just sit back and HODL!',
@@ -67,7 +69,6 @@ module.exports.init = function (Moon) {
           .catch(err => console.log('error fetching prices', err));
       },
       "CALCULATE": (state, info) => {
-        console.log('CALCULATE');
         let stateCopy = state;
         stateCopy.isCalculating = true;
         stateCopy.calculatingString = hodlStore.calculatingStrings[Math.floor(Math.random() * hodlStore.calculatingStrings.length)];

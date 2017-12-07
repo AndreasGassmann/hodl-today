@@ -37,7 +37,6 @@ const app = new Moon({
   },
   methods: {
     openModal: function() {
-      console.log('open modal');
       var modal = document.getElementById('myModal');
       modal.style.display = "block";
     },
