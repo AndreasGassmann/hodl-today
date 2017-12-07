@@ -9,13 +9,11 @@ let fetchPrices = () => {
 
       response.json().then(function (data) {
 
-        // BTC
         let BTC = {};
         BTC.currentPrice = data.BTC_CURRENT;
         BTC.discount = Math.round((1 - (data.BTC_CURRENT / data.BTC_ATH)) * 10000) / 100;
         BTC.showDiscount = BTC.discount > 3;
 
-        // ETH
         let ETH = {};
         ETH.currentPrice = data.ETH_CURRENT;
         ETH.discount = Math.round((1 - (data.ETH_CURRENT / data.ETH_ATH)) * 10000) / 100;
@@ -32,8 +30,6 @@ let fetchPrices = () => {
     });
   });
 }
-
-require('./lambo');
 
 module.exports = {
   fetchPrices: fetchPrices

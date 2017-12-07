@@ -6,7 +6,7 @@
     <span m-if="store.state.data.isCalculating">{{store.state.data.calculatingString}}</span>
 </span>
   </span><br /><br /><br />
-  <div m-if="store.state.calculated">
+  <div class="hodl-results" m-if="store.state.calculated">
   <p class="hodl-reason">{{store.state.BTC.hodlReason}}</p>
               <p class="btc-price">1 Bitcoin = ${{store.state.BTC.currentPrice}}</p>
       <p m-if="!store.state.BTC.showDiscount">In fact, you should consider buying <a href="https://www.coinbase.com/join/5a1f80ba5893bb00d70fcff5">MORE</a>!</p>

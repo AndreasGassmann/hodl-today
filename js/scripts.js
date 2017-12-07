@@ -62,3 +62,5 @@ setTimeout(() => {
     }
   });
 }, 200);
+
+require('./util/lambo');

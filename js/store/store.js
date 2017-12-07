@@ -15,7 +15,7 @@ let hodlStore = {
     'The best part of the ride is just ahead! #HODL!',
     'NEVER SELL, ONLY HODL!',
     'I don\'t always sell my Bitcoin. But when I do, I immediately regret my decision. #HODL',
-    'According to our Moon Math you should HODL!'
+    'According to our Moon Math, you should HODL!'
   ],
   hodlHardReasons: [
     'Looks like we\'re in a small dip. Just sit back and HODL!',
@@ -62,7 +62,7 @@ module.exports.init = function (Moon) {
             data.BTC.hodlReason = state.BTC.hodlReason;
             data.ETH.hodlReason = state.ETH.hodlReason;
             state.BTC = data.BTC;
-            state.ETH = data.ETH;            
+            state.ETH = data.ETH;
           })
           .catch(err => console.log('error fetching prices', err));
       },
