@@ -27,10 +27,25 @@ const app = new Moon({
   hooks: {
     mounted() {
       store.dispatch("FETCH_PRICES");
-      store.dispatch("FETCH_HISTORY");
       setInterval(function () {
         store.dispatch("FETCH_PRICES");
       }, 10000);
     }
   }
 });
+
+setTimeout(() => {
+  anime.timeline({
+    loop: false
+  })
+  .add({
+    targets: '.ml15 .word',
+    scale: [5, 1],
+    opacity: [0, 1],
+    easing: "easeOutCirc",
+    duration: 800,
+    delay: function (el, i) {
+      return 800 * i;
+    }
+  });
+}, 200);

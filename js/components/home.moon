@@ -1,10 +1,17 @@
 <template>
   <div>
-    <p>Bitcoin price: ${{store.state.BTC.currentPrice}}</p>
+  <span class="ml15">
+  <span class="word">
+  <button m-if="!store.state.data.isCalculating" class="button" m-on:click="calculate">Should I HODL?</button>
+    <span m-if="store.state.data.isCalculating">{{store.state.data.calculatingString}}</span>
+</span>
+  </span>
+  <div m-if="store.state.calculated">
+  {{store.state.BTC.hodlReason}}
+      <p m-if="!store.state.BTC.showDiscount">In fact, you should consider buying <a href="https://www.coinbase.com/join/5a1f80ba5893bb00d70fcff5">MORE</a>!</p>
+            <p>1 Bitcoin = ${{store.state.BTC.currentPrice}}</p>
     <p m-if="store.state.BTC.showDiscount"><a href="https://www.coinbase.com/join/5a1f80ba5893bb00d70fcff5">Buy Bitcoin at a {{store.state.BTC.discount}}% discount!</a></p>
-    <div style="margin: auto; width: 500px; height: 500px;">
-            <canvas id="myChart" width="400" height="400"></canvas>
-          </div>
+</div>
   </div>
 </template>
 <script>
@@ -12,10 +19,9 @@
 
   exports = {
     store: store,
-    hooks: {
-      mounted: function() {
-        // called when element is mounted and the first build has been run
-        store.dispatch("FETCH_HISTORY");
+    methods: {
+      calculate: function() {
+        store.dispatch('CALCULATE');
       }
     }
   };

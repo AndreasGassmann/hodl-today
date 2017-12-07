@@ -3,128 +3,85 @@ const api = require("../util/api.js");
 
 module.exports.store = {};
 
+let hodlStore = {
+  hodlEasyReasons: [
+    'You should definitely HODL!',
+    'Now is a good time to HODL!',
+    'HODL today, MOON tomorrow!',
+    '#LAMBO'
+  ],
+  hodlHardReasons: [
+    'Looks like we\'re in a small dip. Just sit back and HODL!',
+    'HODL is key. Don\'t let the FUD get to you...',
+    'That\'s it. The bubble has burst! #FUD',
+    'Keep calm and HODL!',
+    'The best part of the ride is just ahead! Just HODL!',
+    'Soon it will be back on track to a new ATH... JUST HODL!',
+    'NEVER SELL, ONLY HODL!',
+    'I don\'t always sell my bitcoin. But when I do, I immediately regret my decision. #HODL',
+    'Y\'All got any more of them cheap Bitcoins? #HODL'
+  ],
+  calculatingStrings: [
+    'Synchronizing with Blockchain...',
+    'Fetching latest data from coinmarketcap...',
+    'Turning on Quantum Computer...',
+    'Analyzing CryptoKittiy prices...',
+    'Preparing rocket launch... #MOON'
+  ]
+}
+
 module.exports.init = function (Moon) {
   Moon.use(Monx);
   module.exports.store = new Monx({
     state: {
+      data: {
+        calculated: false,
+        isCalculating: false,
+        calculatingString: ''
+      },      
       BTC: {
         currentPrice: 0,
         showDiscount: false,
-        discount: 0
+        discount: 0,
+        hodlReason: ''        
       },
       ETH: {
         currentPrice: 0,
         showDiscount: false,
-        discount: 0
+        discount: 0,
+        hodlReason: ''
       },
-      charts: {
-        BTC: {}
-      }
     },
     actions: {
       "FETCH_PRICES": (state, info) => {
         api.fetchPrices().then(data => {
+            data.BTC.hodlReason = state.BTC.hodlReason;
+            data.ETH.hodlReason = state.ETH.hodlReason;
             state.BTC = data.BTC;
-            state.ETH = data.ETH;
+            state.ETH = data.ETH;            
           })
           .catch(err => console.log('error fetching prices', err));
       },
-      "FETCH_HISTORY": (state, info) => {
-        fetch('https://api.coindesk.com/v1/bpi/historical/close.json').then((response) => {
-            if (response.status !== 200) {
-              console.log('Looks like there was a problem. Status Code: ' +
-                response.status);
-              return;
-            }
+      "CALCULATE": (state, info) => {
+        console.log('CALCULATE');
+        let stateCopy = state;
+        stateCopy.isCalculating = true;
+        stateCopy.calculatingString = hodlStore.calculatingStrings[Math.floor(Math.random() * hodlStore.calculatingStrings.length)];
+        state.data = stateCopy;
+        setTimeout(() => {
+          stateCopy = state;
+          stateCopy.calculated = true;
+          stateCopy.isCalculating = false;
 
-            response.json().then(function (data) {
-              let chartLabels = [];
-              let chartData = [];
-              for (let key in data.bpi) {
-                if (data.bpi[key]) {
-                  chartLabels.push(key);
-                  chartData.push(data.bpi[key]);
-                }
-              }
-              state.charts.showChart = true;
-              state.charts.data = chartData;
+          let strings = state.BTC.showDiscount ? hodlStore.hodlHardReasons : hodlStore.hodlEasyReasons
+          state.BTC.hodlReason = strings[Math.floor(Math.random() * strings.length)];
 
-              let el = document.getElementById('myChart');
-              if (el) {
-                var ctx = el.getContext("2d");
-                var gradientStroke = ctx.createLinearGradient(0, 500, 0, 0);
-                gradientStroke.addColorStop(0, '#FFFFFF');
-                gradientStroke.addColorStop(1, '#FFFFFF');
-                var gradientFill = ctx.createLinearGradient(0, 350, 0, 0);
-                gradientFill.addColorStop(0, "rgba(255, 255, 255, 0)");
-                gradientFill.addColorStop(1, "rgba(255, 255, 255, 0.2)");
-                var myChart = new Chart(ctx, {
-                  type: 'line',
-                  data: {
-                    labels: chartLabels,
-                    datasets: [{
-                      label: "Data",
-                      borderColor: gradientStroke,
-                      pointBorderColor: gradientStroke,
-                      pointBackgroundColor: gradientStroke,
-                      pointHoverBackgroundColor: gradientStroke,
-                      pointHoverBorderColor: gradientStroke,
-                      pointBorderWidth: 0,
-                      pointHoverRadius: 0,
-                      pointHoverBorderWidth: 0,
-                      pointRadius: 0,
-                      fill: true,
-                      backgroundColor: gradientFill,
-                      borderWidth: 1,
-                      data: chartData
-                    }]
-                  },
-                  options: {
-                    animation: {
-                      duration: 1500,
-                      easing: "easeInOutElastic"
-                    },
-                    legend: {
-                      position: "bottom",
-                      display: false
-                    },
-                    scales: {
-                      yAxes: [{
-                        ticks: {
-                          fontColor: "rgba(255,255,255,0.5)",
-                          fontStyle: "bold",
-                          beginAtZero: false,
-                          maxTicksLimit: 5,
-                          padding: 20
-                        },
-                        gridLines: {
-                          drawTicks: false,
-                          display: false
-                        }
-                      }],
-                      xAxes: [{
-                        gridLines: {
-                          zeroLineColor: "transparent",
-                          drawTicks: false,
-                          display: false
-                        },
-                        ticks: {
-                          padding: 20,
-                          fontColor: "rgba(255,255,255,0.5)",
-                          fontStyle: "bold"
-                        }
-                      }]
-                    }
-                  }
-                });
-              }
-            });
-
-          })
-          .catch(function (err) {
-            console.log('Fetch Error :-S', err);
-          });
+          strings = state.ETH.showDiscount ? hodlStore.hodlHardReasons : hodlStore.hodlEasyReasons
+          state.ETH.hodlReason = strings[Math.floor(Math.random() * strings.length)];
+          
+          state.data = stateCopy;          
+        }, 2000);
       }
-    },
+    }
   });
 }
