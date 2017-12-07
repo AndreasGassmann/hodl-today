@@ -14,7 +14,8 @@ let hodlStore = {
     'Keep calm and HODL!',
     'The best part of the ride is just ahead! #HODL!',
     'NEVER SELL, ONLY HODL!',
-    'I don\'t always sell my Bitcoin. But when I do, I immediately regret my decision. #HODL'
+    'I don\'t always sell my Bitcoin. But when I do, I immediately regret my decision. #HODL',
+    'According to our Moon Math you should HODL!'
   ],
   hodlHardReasons: [
     'Looks like we\'re in a small dip. Just sit back and HODL!',
@@ -28,7 +29,8 @@ let hodlStore = {
     'Turning on Quantum Computer...',
     'Analyzing CryptoKittiy prices... 🐱',
     'Preparing rocket launch... #MOON',
-    'Preparing for moon landing... 🚀'
+    'Preparing for moon landing... 🚀',
+    'Getting latest Moon Math results... 🌖'
   ]
 }
 
