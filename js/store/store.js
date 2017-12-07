@@ -17,7 +17,8 @@ let hodlStore = {
     'I don\'t always sell my Bitcoin. But when I do, I immediately regret my decision. #HODL',
     'According to our Moon Math, you should HODL!',
     'Buy high, sell low! #HODL',
-    'Reaching escape velocity... 🚀 #HODL'
+    'Reaching escape velocity... 🚀 #HODL',
+    'Noone will know you are a bad trader if you just HODL!'    
   ],
   hodlHardReasons: [
     'Looks like we\'re in a small dip. Just sit back and HODL!',
@@ -29,7 +30,7 @@ let hodlStore = {
     'Synchronizing with Blockchain...',
     'Fetching latest data from coinmarketcap...',
     'Turning on Quantum Computer...',
-    'Analyzing CryptoKittiy prices... 🐱',
+    'Analyzing CryptoKitty prices... 🐱',
     'Preparing rocket launch... #MOON',
     'Preparing for moon landing... 🚀',
     'Getting latest Moon Math results... 🌖'
@@ -43,19 +44,19 @@ module.exports.init = function (Moon) {
       data: {
         calculated: false,
         isCalculating: false,
-        calculatingString: ''
+        calculatingString: 'sadf'
       },      
       BTC: {
         currentPrice: 0,
         showDiscount: false,
         discount: 0,
-        hodlReason: ''        
+        hodlReason: 'f'        
       },
       ETH: {
         currentPrice: 0,
         showDiscount: false,
         discount: 0,
-        hodlReason: ''
+        hodlReason: 'f'
       },
     },
     actions: {
@@ -73,7 +74,22 @@ module.exports.init = function (Moon) {
         stateCopy.isCalculating = true;
         stateCopy.calculatingString = hodlStore.calculatingStrings[Math.floor(Math.random() * hodlStore.calculatingStrings.length)];
         state.data = stateCopy;
+
+        let button = document.getElementById('hodl-button');
+        button.className = "fadeout";
+        let message = document.getElementById('hodl-message');
+        message.className = "fadein";
+        let results = document.getElementById('hodl-results');
+        console.log(results.className);
+        if (results.className) {
+          results.className = "";          
+        }
+
         setTimeout(() => {
+          button.className = "fadein";
+          message.className = "";
+          results.className = "fadein";
+
           stateCopy = state;
           stateCopy.calculated = true;
           stateCopy.isCalculating = false;
@@ -85,7 +101,7 @@ module.exports.init = function (Moon) {
           state.ETH.hodlReason = strings[Math.floor(Math.random() * strings.length)];
           
           state.data = stateCopy;          
-        }, 2000);
+        }, 5000);
       }
     }
   });
