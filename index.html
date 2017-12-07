@@ -9,7 +9,7 @@
   <meta name="author" content="AndreasGassmann">
   <meta name="keywords" content="hodl, bitcoin, ethereum, crypto, cryptocurrencies, portfolio" />
 
-  <title>hodl.today</title>
+  <title>HODL.today, MOON tomorrow</title>
 
   <link rel="stylesheet" type="text/css" href="./dist/css/build.min.css" />
 </head>
@@ -20,10 +20,9 @@
 
       <div class="header">
         <div class="links">
-          <router-link to="/" class="no-underline">Home</router-link>
-          <router-link to="/eth" class="no-underline">ETH</router-link>
-          <router-link to="/faq" class="no-underline">FAQ</router-link>
-        </div>
+            <span m-on:click="changeCurrency"></span>
+            <span m-on:click="openModal">FAQ</span>
+          </div>
 
         <a class="logo ml15">
           <span class="word">hodl</span><span class="word">.today</span>
@@ -41,9 +40,7 @@
       </div>
       <div class="main">
         <div class="content">
-          <router-view></router-view>
-
-
+          <home></home>
         </div>
       </div>
       <div class="footer">
@@ -57,6 +54,22 @@
 
   </div>
   </div>
+
+  <!-- The Modal -->
+<div id="myModal" class="modal">
+    
+      <!-- Modal content -->
+      <div class="modal-content">
+        <span class="close">&times;</span>
+        <div style="color:black">
+            <h2>What is HODL?</h2>
+            <p style="color:black"><a style="color:black" href="https://bitcointalk.org/index.php?topic=375643.0">HODL!</a></p>
+            <h2>Why should I HODL?</h2>
+            <p style="color:black"><a style="color:black" href="https://www.youtube.com/watch?v=XbZ8zDpX2Mg">Cause it's gonna crash!</a></p>
+          </div>
+      </div>
+    
+    </div>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/2.0.2/anime.min.js"></script>
   <script src="./dist/js/build.min.js"></script>
 </body>

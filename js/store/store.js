@@ -5,28 +5,30 @@ module.exports.store = {};
 
 let hodlStore = {
   hodlEasyReasons: [
-    'You should definitely HODL!',
-    'Now is a good time to HODL!',
-    'HODL today, MOON tomorrow!',
-    '#LAMBO'
+    'You should definitely HODL! Enjoy the moon! 🌖',
+    'Now is a good time to HODL! Enjoy the ride! 🎢',
+    'HODL today, MOON tomorrow! 🌖',
+    '#HODL #LAMBO',
+    '#🌘 #HODL',
+    'HODL is key. Don\'t let the FUD get to you...',
+    'Keep calm and HODL!',
+    'The best part of the ride is just ahead! #HODL!',
+    'NEVER SELL, ONLY HODL!',
+    'I don\'t always sell my Bitcoin. But when I do, I immediately regret my decision. #HODL'
   ],
   hodlHardReasons: [
     'Looks like we\'re in a small dip. Just sit back and HODL!',
-    'HODL is key. Don\'t let the FUD get to you...',
-    'That\'s it. The bubble has burst! #FUD',
-    'Keep calm and HODL!',
-    'The best part of the ride is just ahead! Just HODL!',
-    'Soon it will be back on track to a new ATH... JUST HODL!',
-    'NEVER SELL, ONLY HODL!',
-    'I don\'t always sell my bitcoin. But when I do, I immediately regret my decision. #HODL',
-    'Y\'All got any more of them cheap Bitcoins? #HODL'
+    'That\'s it. The bubble has burst! 💥 You must be strong now! #FUD #HODL',
+    'Soon it will be back on track to a new ATH 📈... JUST HODL!',
+    'Y\'All got any more of them cheap Coins? #HODL'
   ],
   calculatingStrings: [
     'Synchronizing with Blockchain...',
     'Fetching latest data from coinmarketcap...',
     'Turning on Quantum Computer...',
-    'Analyzing CryptoKittiy prices...',
-    'Preparing rocket launch... #MOON'
+    'Analyzing CryptoKittiy prices... 🐱',
+    'Preparing rocket launch... #MOON',
+    'Preparing for moon landing... 🚀'
   ]
 }
 
@@ -73,10 +75,10 @@ module.exports.init = function (Moon) {
           stateCopy.calculated = true;
           stateCopy.isCalculating = false;
 
-          let strings = state.BTC.showDiscount ? hodlStore.hodlHardReasons : hodlStore.hodlEasyReasons
+          let strings = state.BTC.showDiscount ? hodlStore.hodlHardReasons.concat(hodlStore.hodlEasyReasons) : hodlStore.hodlEasyReasons
           state.BTC.hodlReason = strings[Math.floor(Math.random() * strings.length)];
 
-          strings = state.ETH.showDiscount ? hodlStore.hodlHardReasons : hodlStore.hodlEasyReasons
+          strings = state.ETH.showDiscount ? hodlStore.hodlHardReasons.concat(hodlStore.hodlEasyReasons) : hodlStore.hodlEasyReasons
           state.ETH.hodlReason = strings[Math.floor(Math.random() * strings.length)];
           
           state.data = stateCopy;          
