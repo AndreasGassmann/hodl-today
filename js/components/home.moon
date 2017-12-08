@@ -2,6 +2,17 @@
   <div>
     <span class="ml15">
       <span class="word">
+        <div>
+          <input type="number" class="input-amount" placeholder="Amount">
+          <div class="styled-select slate">
+            <select>
+              <option>BTC</option>
+              <option>ETH</option>
+            </select>
+          </div>
+        </div>
+        <br />
+        <br />
         <button id="hodl-button" m-on:click="calculate">Should I HODL or SELL?</button>
         <br />
         <br />
