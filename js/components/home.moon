@@ -26,8 +26,8 @@
     <div id="hodl-results">
       <p class="hodl-reason">{{store.state.BTC.hodlReason}}</p>
       <p class="btc-price">1 Bitcoin = ${{store.state.BTC.currentPrice}}</p>
-      <p m-if="!store.state.BTC.showDiscount">In fact, you should consider buying <a href="https://www.coinbase.com/join/5a1f80ba5893bb00d70fcff5">MORE</a>!</p>
-      <p m-if="store.state.BTC.showDiscount"><a href="https://www.coinbase.com/join/5a1f80ba5893bb00d70fcff5">Buy Bitcoin at a {{store.state.BTC.discount}}% discount!</a></p>
+      <p m-if="!store.state.BTC.showDiscount">In fact, you should consider buying <a href="https://www.coinbase.com/signup?r=5a1f80ba5893bb00d70fcff5" target="_blank">MORE</a>!</p>
+      <p m-if="store.state.BTC.showDiscount"><a href="https://www.coinbase.com/signup?r=5a1f80ba5893bb00d70fcff5" target="_blank">Buy Bitcoin at a {{store.state.BTC.discount}}% discount!</a></p>
     </div>
   </div>
 </template>
