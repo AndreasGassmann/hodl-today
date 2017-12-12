@@ -9,6 +9,11 @@
               <select m-model="currency">
                 <option value="BTC">BTC</option>
                 <option value="ETH">ETH</option>
+                <option value="LTC">LTC</option>
+                <option value="BCH">BCH</option>
+                <option value="MIOTA">MIOTA</option>
+                <option value="XMR">XMR</option>
+                <option value="DASH">DASH</option>
               </select>
             </div>
           </div>

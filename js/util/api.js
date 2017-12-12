@@ -1,6 +1,8 @@
+const coinNames = require('./coinNames');
+
 let fetchPrices = () => {
   return new Promise((resolve, reject) => {
-    fetch('https://api.hodlfolio.com/ath/bitstamp/').then(function (response) {
+    fetch('https://api.hodlfolio.com/prices/ath').then(function (response) {
       if (response.status !== 200) {
         console.log('Looks like there was a problem. Status Code: ' +
           response.status);
@@ -9,20 +11,13 @@ let fetchPrices = () => {
 
       response.json().then(function (data) {
 
-        let BTC = {};
-        BTC.currentPrice = data.BTC_CURRENT;
-        BTC.discount = Math.round((1 - (data.BTC_CURRENT / data.BTC_ATH)) * 10000) / 100;
-        BTC.showDiscount = BTC.discount > 3;
-
-        let ETH = {};
-        ETH.currentPrice = data.ETH_CURRENT;
-        ETH.discount = Math.round((1 - (data.ETH_CURRENT / data.ETH_ATH)) * 10000) / 100;
-        ETH.showDiscount = ETH.discount > 3;
-
-        resolve({
-          BTC,
-          ETH
+        let object = {};
+        Object.keys(coinNames).forEach(c => {
+          object[c] = savePrices(data, c);
         });
+        
+        console.log(object);
+        resolve(object);
       });
     }).catch(function (err) {
       console.log('Fetch Error :-S', err);
@@ -30,6 +25,15 @@ let fetchPrices = () => {
     });
   });
 }
+
+let savePrices = (data, name) => {
+  let discount = Math.round((1 - (data[name].current / data[name].ATH)) * 10000) / 100;
+  return {
+    currentPrice: data[name].current,
+    discount: discount,
+    showDiscount: discount > 3
+  };
+};
 
 module.exports = {
   fetchPrices: fetchPrices
