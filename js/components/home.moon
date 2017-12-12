@@ -21,8 +21,8 @@
         </div>
       </span>
     </span>
-    <div id="hodl-loading">
-      <div m-if="store.state.data.isCalculating" id="hodl-loader" class="loader">Loading...</div>
+    <div m-if="store.state.data.isCalculating" id="hodl-loading">
+      <div id="hodl-loader" class="loader">Loading...</div>
         <div id="hodl-message">{{store.state.data.calculatingString}}</div>
       </div>
     <div id="hodl-results">

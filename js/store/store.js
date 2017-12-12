@@ -38,7 +38,7 @@ module.exports.init = function (Moon) {
         let results = document.getElementById('hodl-results');
 
         if (results.className) {
-          results.className = "";          
+          results.className = "";
         }
 
         setTimeout(() => {
@@ -56,13 +56,15 @@ module.exports.init = function (Moon) {
           stateCopy.hodlReason = strings[Math.floor(Math.random() * strings.length)]
             .replace('{coin}', coinNames[info.currency])
             .replace('{coin_short}', info.currency);
-                    
+
           stateCopy.amountString = info.amount + ' ' + coinNames[info.currency] + ' = $' + Math.round(info.amount * coin.currentPrice * 100) / 100;
-          
+
           stateCopy.showDiscount = coin.showDiscount;
           stateCopy.discount = coin.discount;
 
-          state.data = stateCopy;          
+          stateCopy.currencyName = coinNames[info.currency];
+
+          state.data = stateCopy;
         }, 3000);
       }
     }
