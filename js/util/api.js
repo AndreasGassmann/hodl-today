@@ -16,7 +16,6 @@ let fetchPrices = () => {
           object[c] = savePrices(data, c);
         });
         
-        console.log(object);
         resolve(object);
       });
     }).catch(function (err) {
