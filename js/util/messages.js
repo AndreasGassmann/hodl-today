@@ -9,7 +9,7 @@ module.exports = {
     'Keep calm and HODL!',
     'The best part of the ride is still ahead! #HODL!',
     'NEVER SELL, ONLY HODL!',
-    'I don\'t always sell my Bitcoin. But when I do, I immediately regret my decision. #HODL',
+    'I don\'t always sell my {coin}. But when I do, I immediately regret my decision. #HODL',
     'According to our Moon Math, you should HODL!',
     'Buy high, sell low! #HODL',
     'Reaching escape velocity... 🚀 #HODL',
@@ -19,7 +19,7 @@ module.exports = {
     'Looks like we\'re in a small dip. Just sit back and HODL!',
     'That\'s it. The bubble has burst! 💥 You must be strong now! #FUD #HODL',
     'Soon it will be back on track to a new ATH 📈... JUST HODL!',
-    'Y\'All got any more of them cheap Coins? #HODL'
+    'Y\'All got any more of them cheap {coin_short}? #HODL'
   ],
   calculatingStrings: [
     'Synchronizing with Blockchain...',

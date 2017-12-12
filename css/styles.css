@@ -59,7 +59,7 @@ p {
   outline: 0;
   padding: 0 16px 0 16px;
   margin-right: 13px;
-  width: 120px;
+  width: 140px;
   background-color: rgba(0,0,0,0.4);
   border-radius: 4px;  
   border: none;
@@ -176,7 +176,7 @@ p {
 }
 
 .content {
-  padding-top: 60px;
+  padding-top: 30px;
   text-align: center;
 }
 
@@ -211,14 +211,15 @@ p {
 
 #hodl-button {
   outline: none;
-  background-color: #F2A900 ;
+  background-color: #F2A900;
+  border-color: rgb(247, 168, 9);
   border-radius: 24px;
-  font-weight: bold;
   color: white;
   padding: 15px 32px;
+  margin-top: 20px;
   text-align: center;
   text-decoration: none;
-  font-size: 16px;
+  font-size: 20px;
 }
 
 .loader,
